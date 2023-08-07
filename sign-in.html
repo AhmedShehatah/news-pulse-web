@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>Sign In</title>
     <link rel="stylesheet" href="css/all.min.css" />
     <link rel="stylesheet" href="css/master.css" />
 
@@ -32,20 +32,10 @@
             </ul>
           </div>
           <div class="right">
-            <ul id="logged-out-UI">
-              <li><a href="sign-in.html" target="_blank">Sign In</a></li>
+            <ul>
+              <li><a href="#">Sign In</a></li>
               <li><a href="#" target="_blank">Sign Up</a></li>
             </ul>
-            <div id="logged-in-UI">
-              <div id="info">
-                <b>A</b>
-              <span>Ahmed Hamdy</span>
-              </div>
-            
-              <a href="#" id="log-out-button" onclick="logoutButtonClicked()"
-                >Log Out</a
-              >
-            </div>
           </div>
         </nav>
       </div>
@@ -76,7 +66,7 @@
             <p>Sign Up</p>
           </div>
         </a>
-        <a href="sign-in.html" target="_blank">
+        <a href="sign-in.html">
           <div class="box">
             <img src="images/fluent-mdl2_signin.png" alt="" />
             <p>Sign In</p>
@@ -88,12 +78,36 @@
     <!-- start landing section -->
     <section class="landing-page">
       <div class="container">
-        <div class="content">
+        <div class="content sign">
           <img src="images/logo-no-background-white 2.png" alt="" />
-          <p>
-            Your comprehensive guide to the latest local and international news
-          </p>
         </div>
+        <form>
+          <div class="input-box">
+            <label for="email-input">Email</label>
+            <input
+              type="email"
+              id="email-input"
+              placeholder="Email"
+              required
+              value="hamdy@gmail.com"
+            />
+          </div>
+          <!-- <div class="input-box">
+						<label for="user-input">Username</label>
+					<input type="text" id="user-input" placeholder="username" required>
+					</div> -->
+          <div class="input-box">
+            <label for="password-input">Password</label>
+            <input
+              type="password"
+              id="password-input"
+              placeholder="password"
+              required
+              value="12345678"
+            />
+          </div>
+          <input type="submit" value="Submit" id="sign-in-button" />
+        </form>
       </div>
       <div id="overlay"></div>
     </section>
@@ -102,6 +116,5 @@
     <!-- start post section -->
     <!-- end post section -->
   </body>
-  <script src="js/main.js"></script>
-  
+  <script src="js/sign.js"></script>
 </html>
