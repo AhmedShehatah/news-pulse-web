@@ -16,16 +16,33 @@ function signInSubmitClicked() {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.data));
       alert("logged in successfully");
-      // TODO: showUI
+      // TODO: Handle successfully
       location.href = "home.html";
+      signInButton.style.setProperty("pointer-events" , "all");
+      signInButton.classList.remove("focus");
+
     })
     .catch((error) => {
-        // TODO : Handle error
-      console.log(error.response);
+      // TODO : Handle error
+      alert(error.response.data.message)
+      signInButton.style.setProperty("pointer-events" , "all")
+      signInButton.classList.remove("focus");
+
     });
 }
 
-document.getElementById("sign-in-button").addEventListener("click", (e) => {
-    e.preventDefault();
-    signInSubmitClicked();
-  });
+function checkLogIn() {
+  const token = localStorage.getItem("token");
+  if(token !== null) {
+    location.href = "home.html";
+  }
+}
+const signInButton = document.getElementById("sign-in-button")
+signInButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  signInButton.style.setProperty("pointer-events" , "none");
+  signInButton.classList.add("focus");
+  signInSubmitClicked();
+});
+
+checkLogIn();

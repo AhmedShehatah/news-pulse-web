@@ -96,7 +96,7 @@ header {
 }
 .container nav .left ul li a {
     display: block;
-    padding: 30px 10px;
+    padding: 35px 10px;
     text-decoration: none;
     color: var(--main-color);
     border-radius: 5px;
@@ -163,6 +163,29 @@ header {
 }
 
 /* end header */
+
+/* add btn */
+#addBtn {
+    position: fixed;
+    z-index: 998;
+    background-color: grey;
+    width: 60px;
+    height: 60px;
+    font-size: 70px;
+    text-decoration: none;
+    color: #FFF;
+    line-height: 45px;
+    text-align: center;
+    bottom: 7%;
+    right: 5%;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+#addBtn:hover {
+    transform: scale(1.1);
+}
+/* //add btn// */
+
 /* start menu box */
 #menu {
     position: absolute;
@@ -190,11 +213,12 @@ header {
     margin-top: 10px;
     width: 100%;
     cursor: pointer;
+    padding: 0 0 15px;
 }
 #menu .menu-box .box:hover {
     border-bottom: 1px solid var(--bg-color);
 }
-#menu .menu-box .box img {
+#menu .menu-box .box img , i {
     font-size: 25px;
     margin-right: 20px;
 }
@@ -295,6 +319,12 @@ header {
     color: var(--bg-color);
     background-color: var(--main-color);
     border: 1px solid var(--bg-color);
+}
+.focus {
+    color: var(--bg-color) !important;
+    background-color: var(--main-color) !important;
+    border: 1px solid var(--bg-color) !important;
+    /* color: red; */
 }
 /* //sign // */
 .landing-page #overlay {
