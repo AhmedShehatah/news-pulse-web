@@ -17,32 +17,37 @@ function signInSubmitClicked() {
       localStorage.setItem("user", JSON.stringify(response.data.data));
       alert("logged in successfully");
       // TODO: Handle successfully
-      location.href = "home.html";
-      signInButton.style.setProperty("pointer-events" , "all");
-      signInButton.classList.remove("focus");
-
+      location.href = "index.html";
+      signInButton.style.setProperty("pointer-events", "all");
+      document.querySelector(".ring").style.setProperty("display", "none");
+      document.getElementById("email-input").disabled = false;
+      document.getElementById("password-input").disabled = false;
     })
     .catch((error) => {
       // TODO : Handle error
-      alert(error.response.data.message)
-      signInButton.style.setProperty("pointer-events" , "all")
-      signInButton.classList.remove("focus");
-
+      alert(error.response.data.message);
+      signInButton.style.setProperty("pointer-events", "all");
+      document.querySelector(".ring").style.setProperty("display", "none");
+      document.getElementById("email-input").disabled = false;
+      document.getElementById("password-input").disabled = false;
     });
 }
 
 function checkLogIn() {
   const token = localStorage.getItem("token");
-  if(token !== null) {
-    location.href = "home.html";
+  if (token !== null) {
+    location.href = "index.html";
   }
 }
-const signInButton = document.getElementById("sign-in-button")
+const signInButton = document.getElementById("sign-in-button");
 signInButton.addEventListener("click", (e) => {
   e.preventDefault();
-  signInButton.style.setProperty("pointer-events" , "none");
-  signInButton.classList.add("focus");
+  signInButton.style.setProperty("pointer-events", "none");
+  document.querySelector(".ring").style.setProperty("display", "block");
+  document.getElementById("email-input").disabled = true;
+  document.getElementById("password-input").disabled = true;
   signInSubmitClicked();
 });
 
 checkLogIn();
+

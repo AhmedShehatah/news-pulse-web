@@ -26,12 +26,17 @@ function showUI() {
       .style.setProperty("display", "flex");
     logOut.style.setProperty("display", "none");
     document.getElementById("addBtn").style.setProperty("display" , "block");
+    document.getElementById("sgn-in").style.setProperty("display" , "none");
+    document.getElementById("sgn-up").style.setProperty("display" , "none");
   } else {
     document
       .getElementById("logged-in-UI")
       .style.setProperty("display", "none");
     logOut.style.setProperty("display", "flex");
     document.getElementById("addBtn").style.setProperty("display" , "none");
+    document.getElementById("sgn-in").style.setProperty("display" , "block");
+    document.getElementById("sgn-up").style.setProperty("display" , "block");
+
 
   }
 }
