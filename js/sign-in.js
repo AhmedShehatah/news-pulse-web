@@ -27,16 +27,24 @@ function signInSubmitClicked() {
       alert(error.response.data.message);
       signInButton.style.setProperty("pointer-events", "all");
       document.querySelector(".loading").style.setProperty("display", "none");
-
     });
 }
 
-
+function fillAllInputs() {
+  let count = 0;
+  const email = document.getElementById("email-input").value;
+  if (email !== "") count++;
+  const password = document.getElementById("password-input").value;
+  if (password !== "") count++;
+  return count === 2;
+}
 signInButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  signInButton.style.setProperty("pointer-events", "none");
-  document.querySelector(".loading").style.setProperty("display", "block");
-  signInSubmitClicked();
+  if (fillAllInputs()) {
+    e.preventDefault();
+    signInButton.style.setProperty("pointer-events", "none");
+    document.querySelector(".loading").style.setProperty("display", "block");
+    signInSubmitClicked();
+  }
 });
 
 function checkLogIn() {
@@ -45,6 +53,4 @@ function checkLogIn() {
     location.href = "index.html";
   }
 }
-checkLogIn()
-
-
+checkLogIn();
