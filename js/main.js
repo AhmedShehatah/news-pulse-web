@@ -1,7 +1,5 @@
 const URL = "https://studentsystem.onrender.com";
 
-
-
 function logoutButtonClicked() {
   localStorage.removeItem("token");
   localStorage.removeItem("user");

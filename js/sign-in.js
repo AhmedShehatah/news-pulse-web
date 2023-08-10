@@ -1,5 +1,6 @@
 const URL = "https://studentsystem.onrender.com";
 // sign request
+const signInButton = document.getElementById("sign-in-button");
 
 function signInSubmitClicked() {
   const email = document.getElementById("email-input").value;
@@ -19,19 +20,24 @@ function signInSubmitClicked() {
       // TODO: Handle successfully
       location.href = "index.html";
       signInButton.style.setProperty("pointer-events", "all");
-      document.querySelector(".ring").style.setProperty("display", "none");
-      document.getElementById("email-input").disabled = false;
-      document.getElementById("password-input").disabled = false;
+      document.querySelector(".loading").style.setProperty("display", "none");
     })
     .catch((error) => {
       // TODO : Handle error
       alert(error.response.data.message);
       signInButton.style.setProperty("pointer-events", "all");
-      document.querySelector(".ring").style.setProperty("display", "none");
-      document.getElementById("email-input").disabled = false;
-      document.getElementById("password-input").disabled = false;
+      document.querySelector(".loading").style.setProperty("display", "none");
+
     });
 }
+
+
+signInButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  signInButton.style.setProperty("pointer-events", "none");
+  document.querySelector(".loading").style.setProperty("display", "block");
+  signInSubmitClicked();
+});
 
 function checkLogIn() {
   const token = localStorage.getItem("token");
@@ -39,15 +45,6 @@ function checkLogIn() {
     location.href = "index.html";
   }
 }
-const signInButton = document.getElementById("sign-in-button");
-signInButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  signInButton.style.setProperty("pointer-events", "none");
-  document.querySelector(".ring").style.setProperty("display", "block");
-  document.getElementById("email-input").disabled = true;
-  document.getElementById("password-input").disabled = true;
-  signInSubmitClicked();
-});
+checkLogIn()
 
-checkLogIn();
 
