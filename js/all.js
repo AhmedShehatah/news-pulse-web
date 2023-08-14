@@ -29,7 +29,6 @@ document.addEventListener("click", (e) => {
     if(e.target.className == "blog-title") {
       localStorage.setItem("id" , e.target.id);
     }
-    
   }
 });
 
