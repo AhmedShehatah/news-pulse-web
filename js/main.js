@@ -4,20 +4,19 @@ function getAllBlogs() {
   axios.get(`${URL}/api/v1/news`)
   .then(response => {
     const posts = response.data.data;
-    console.log(posts)
     posts.reverse();
     document.querySelector(".posts .container").innerHTML = "";
     for(let post of posts) {
+      console.log(post.image_url)
       let img = post.image_url;
       if(img === "") img = "images/not-found.png";
       let time = post.updatedAt;
-      console.log(typeof time.split(""))
       time = time.split("T");
       let content = ` 
       <div class="post" dir="auto">
         <img src="${img}" alt="image not found">
         <div class="post-info">
-        <a href=""><h2>${post.title}</h2></a>
+        <a href="blog.html"><h2 id="${post._id}" class="blog-title">${post.title}</h2></a>
           <p>${post.content}...</p>
           <div class="post-publisher">
             <span>${time[0]}</span>
@@ -68,5 +67,10 @@ function showUI() {
     document.getElementById("sgn-up").style.setProperty("display" , "block");
   }
 }
+document.querySelector(".blog-title").addEventListener("click" , e => {
+  console.log(e.target)
+  alert("clikced")
+})
+
 showUI();
 

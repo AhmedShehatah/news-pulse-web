@@ -25,6 +25,14 @@ document.addEventListener("click", (e) => {
     navMenu.style.visibility = "visible";
     menuBox.style.left = `-300px`;
     overlay.style.display = "none";
+  } else {
+    if(e.target.className == "blog-title") {
+      localStorage.setItem("id" , e.target.id);
+    }
+    
   }
 });
+
+
+
 

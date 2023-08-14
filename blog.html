@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>blog</title>
+    <link rel="stylesheet" href="css/master.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+      <!-- import axios lib -->
+      <script src="./node_modules/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <!-- start header -->
+    <header>
+      <div class="container">
+        <nav>
+          <div class="left" id="left">
+            <button id="menu-icon">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">About Us</a></li>
+            </ul>
+          </div>
+          <div class="right">
+            <ul id="logged-out-UI">
+              <li><a href="sign-in.html" target="_blank">Sign In</a></li>
+              <li><a href="sign-up.html" target="_blank">Sign Up</a></li>
+            </ul>
+            <div id="logged-in-UI">
+              <div id="info">
+                <b>A</b>
+                <span>Ahmed Hamdy</span>
+              </div>
+
+              <a href="#" id="log-out-button" onclick="logoutButtonClicked()"
+                >Log Out</a
+              >
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header -->
+      <!-- start menu box -->
+      <div id="menu">
+        <div class="menu-box">
+          <div id="arrow">
+            <i class="fa-solid fa-arrow-left"></i>
+          </div>
+          <a href="index.html">
+            <div class="box">
+              <i class="fa-solid fa-house"></i>
+              <p>Home</p>
+            </div>
+          </a>
+          <a href="#">
+            <div class="box">
+              <img src="images/Vector.png" alt="" />
+              <p>Contact Us</p>
+            </div>
+          </a>
+          <a href="#"
+            ><div class="box">
+              <img src="images/Vector (1).png" alt="" />
+              <p>About Us</p>
+            </div></a
+          >
+          <a href="sign-up.html" target="_blank" id="sgn-up">
+            <div class="box">
+              <img src="images/Vector (2).png" alt="" />
+              <p>Sign Up</p>
+            </div>
+          </a>
+          <a href="sign-in.html" target="_blank" id="sgn-in">
+            <div class="box">
+              <img src="images/fluent-mdl2_signin.png" alt="" />
+              <p>Sign In</p>
+            </div>
+          </a>
+        </div>
+    </div>
+    
+    <!-- end menu box -->
+    <!-- start landing section -->
+    <section class="blog-landing-page">
+        
+        <div id="overlay"></div>
+    <!-- section blog -->
+    <div class="container">
+            <div class="blog">
+            <div class="full-blog" dir="auto">
+                <img src="images/Rectangle 1.png" alt="">
+                <div class="post-info">
+                  <h2 class="blog-title" id="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, repellat consequatur, dolorem animi, quis nostrum facilis a minima corrupti rem inventore eum suscipit et illo tenetur odio non est aliquid.</h2>
+                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias animi sapiente ratione consectetur aut fuga adipisci iusto, at consequuntur rerum atque blanditiis modi voluptas beatae sit id recusandae dolorem quo.</p>
+                  <div class="post-publisher">
+                    <span>الإثنين,09 يناير 2022</span>
+                    <span>حسن دياب</span>
+                  </div>
+                </div>
+                <hr>
+              </div>
+              <div class="box-btn">
+                  <button class="blog-btn" id="Edit">Edit</button>
+              <button class="blog-btn" id="Delete">Delete</button>
+              </div>
+        </div>
+        
+      </div>
+      
+      <!-- //section blog// -->
+    </section>
+    <!-- end landing section -->
+
+  </body>
+  <script src="js/all.js"></script>
+  <script src="js/blog.js"></script>
+</html>
