@@ -1,5 +1,36 @@
 const URL = "https://studentsystem.onrender.com";
-
+getAllBlogs();
+function getAllBlogs() {
+  axios.get(`${URL}/api/v1/news`)
+  .then(response => {
+    const posts = response.data.data;
+    posts.reverse();
+    document.querySelector(".posts .container").innerHTML = "";
+    for(let post of posts) {
+      console.log(post.image_url)
+      let img = post.image_url;
+      if(img === "") img = "images/not-found.png";
+      let time = post.updatedAt;
+      time = time.split("T");
+      let content = ` 
+      <div class="post" dir="auto">
+        <img src="${img}" alt="image not found">
+        <div class="post-info">
+        <a href="blog.html"><h2 id="${post._id}" class="blog-title">${post.title}</h2></a>
+          <p>${post.content}...</p>
+          <div class="post-publisher">
+            <span>${time[0]}</span>
+            <span>${post.publisher}</span>
+          </div>
+        </div>
+    </div>
+      `
+      document.querySelector(".posts .container").innerHTML += content;
+    }
+  }).catch(error => {
+    console.log(error.response);
+  })
+}
 function logoutButtonClicked() {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
@@ -34,9 +65,12 @@ function showUI() {
     document.getElementById("addBtn").style.setProperty("display" , "none");
     document.getElementById("sgn-in").style.setProperty("display" , "block");
     document.getElementById("sgn-up").style.setProperty("display" , "block");
-
-
   }
 }
+document.querySelector(".blog-title").addEventListener("click" , e => {
+  console.log(e.target)
+  alert("clikced")
+})
+
 showUI();
 
