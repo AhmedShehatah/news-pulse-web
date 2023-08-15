@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>add</title>
+    <link rel="stylesheet" href="css/master.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <!-- import axios lib -->
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <!-- start header -->
+    <header>
+      <div class="container">
+        <nav>
+          <div class="left" id="left">
+            <button id="menu-icon">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">About Us</a></li>
+            </ul>
+          </div>
+          <div class="right">
+            <ul id="logged-out-UI">
+              <li><a href="sign-in.html" target="_blank">Sign In</a></li>
+              <li><a href="sign-up.html" target="_blank">Sign Up</a></li>
+            </ul>
+            <div id="logged-in-UI">
+              <div id="info">
+                <b>A</b>
+                <span>Ahmed Hamdy</span>
+              </div>
+
+              <a href="#" id="log-out-button" onclick="logoutButtonClicked()"
+                >Log Out</a
+              >
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header -->
+    <!-- start menu box -->
+    <div id="menu">
+      <div class="menu-box">
+        <div id="arrow">
+          <i class="fa-solid fa-arrow-left"></i>
+        </div>
+        <a href="index.html">
+          <div class="box">
+            <i class="fa-solid fa-house"></i>
+            <p>Home</p>
+          </div>
+        </a>
+        <a href="#">
+          <div class="box">
+            <img src="images/Vector.png" alt="" />
+            <p>Contact Us</p>
+          </div>
+        </a>
+        <a href="#"
+          ><div class="box">
+            <img src="images/Vector (1).png" alt="" />
+            <p>About Us</p>
+          </div></a
+        >
+      </div>
+    </div>
+
+    <!-- end menu box -->
+    <!-- start landing section -->
+    <section class="blog-landing-page">
+      <div id="overlay"></div>
+      <div class="container">
+        <form action="">
+                <div class="image">
+                    
+                    <label class="custom-file-upload">
+                      <input type="file" id="imageInput" accept="image/*">
+                      <p id="upload-text">Upload Image</p>
+                      <div id="imagePreview"></div>
+                    </label>
+                    
+                    
+                </div>
+                <div class="content">
+                    <input type="text" required id="tblog">
+                    <textarea required id="cblog"></textarea>
+                </div>
+                <button class="add-btn" id="add">Add</button>
+              </form>
+
+      </div>
+      <div class="loading" style="display: none;">Loading&#8230;</div>
+
+    </section>
+    <!-- end landing section -->
+   
+  </body>
+  <script src="js/all.js"></script>
+  <script src="js/add.js"></script>
+</html>
