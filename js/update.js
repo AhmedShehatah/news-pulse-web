@@ -3,7 +3,10 @@ const URL = "https://studentsystem.onrender.com";
 // Get the input element and preview container
 const imageInput = document.getElementById("imageInput");
 const imagePreview = document.getElementById("imagePreview");
-const addBlogBtn = document.getElementById("add");
+const saveBlogBtn = document.getElementById("save");
+const id = localStorage.getItem("id");
+document.getElementById("tblog").value = localStorage.getItem("titleBlog");
+document.getElementById("cblog").value = localStorage.getItem("contentBlog");
 let file = "";
 // Add an event listener to the input for when a file is selected
 imageInput.addEventListener("change", function (event) {
@@ -48,18 +51,8 @@ imageInput.addEventListener("change", function (event) {
     reader.readAsDataURL(file);
   }
 });
-addBlogBtn.addEventListener("click", (e) => {
-  if (fillAllInputs()) {
-    e.preventDefault();
-    addBlogBtn.style.setProperty("pointer-events", "none");
-    document.querySelector(".loading").style.setProperty("display", "block" , "important");
-    addBlogBtnClicked();
-  } else {
-    alert("fill all inputs");
-    e.preventDefault();
-  }
-});
-function createBlog(img) {
+
+function updateBlog(img) {
   const title = document.getElementById("tblog").value;
   const content = document.getElementById("cblog").value;
   const token = localStorage.getItem("token");
@@ -73,19 +66,19 @@ function createBlog(img) {
     "Content-Type": "application/json",
   };
   axios
-    .post(`${URL}/api/v1/news`, params, {
+    .patch(`${URL}/api/v1/news/${id}`, params, {
       headers: headers,
     })
     .then((response) => {
-      alert("added successfully");
+      alert("updated successfully");
       location.href = "index.html";
     })
     .catch((error) => {
-      alert("try again");
+        alert("try again");
     });
 }
 
-function addBlogBtnClicked() {
+function saveBtnClicked() {
   let formData = new FormData();
   console.log(file);
   formData.append("image", file);
@@ -97,17 +90,31 @@ function addBlogBtnClicked() {
       headers: headers,
     })
     .then((response) => {
-      createBlog(response.data.data.src);
-      console.log(response.data.data.src)
-      addBlogBtn.style.setProperty("pointer-events", "all");
+      updateBlog(response.data.data.src);
+      console.log(response.data.data.src);
+      saveBlogBtn.style.setProperty("pointer-events", "all");
       document.querySelector(".loading").style.setProperty("display", "none");
     })
     .catch((error) => {
-      addBlogBtn.style.setProperty("pointer-events", "all");
+      saveBlogBtn.style.setProperty("pointer-events", "all");
       document.querySelector(".loading").style.setProperty("display", "none");
       alert("try again");
     });
 }
+
+saveBlogBtn.addEventListener("click", (e) => {
+  if (fillAllInputs()) {
+    e.preventDefault();
+    saveBlogBtn.style.setProperty("pointer-events", "none");
+    document
+      .querySelector(".loading")
+      .style.setProperty("display", "block", "important");
+    saveBtnClicked();
+  } else {
+    alert("fill all inputs");
+    e.preventDefault();
+  }
+});
 function logoutButtonClicked() {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
@@ -132,9 +139,9 @@ function showUI() {
     const userName = user.user_name;
     infoDiv.innerHTML = "";
     let content = `
-      <b>${userName[0].toUpperCase()}</b>
-      <span>${userName}</span>
-      `;
+        <b>${userName[0].toUpperCase()}</b>
+        <span>${userName}</span>
+        `;
     infoDiv.innerHTML = content;
     document
       .getElementById("logged-in-UI")

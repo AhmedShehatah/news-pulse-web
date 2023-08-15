@@ -1,6 +1,7 @@
 const URL = "https://studentsystem.onrender.com";
 const id = localStorage.getItem("id");
 const token = localStorage.getItem("token");
+
 let theSame = false;
 let username;
 if (token !== null) {
@@ -34,13 +35,17 @@ function getFullBlog(id) {
             </div>
         </div>
         <div class="box-btn" >
-          <button class="blog-btn" id="Edit">Edit</button>
+        <button class="blog-btn" id="Edit" onclick="editBtnClicked()">Edit</button>
           <button class="blog-btn" id="Delete" onclick="deleteBtnClicked()">Delete</button>
 
         </div>
     </div>`;
       document.querySelector(".blog-landing-page .container").innerHTML +=
         content;
+        localStorage.setItem("contentBlog" , blog.content)
+        localStorage.setItem("titleBlog" , blog.title)
+        localStorage.setItem("imgBlog" , img)
+      
       let box = "none";
       if (username === blog.publisher) {
         theSame = true;
@@ -57,7 +62,9 @@ function getFullBlog(id) {
       console.log(error.response);
     });
 }
-
+function editBtnClicked() {
+  location.href = "update.html"
+}
 function logoutButtonClicked() {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
