@@ -36,6 +36,10 @@ function logoutButtonClicked() {
   localStorage.removeItem("user");
   showUI();
 }
+
+function addBtnClicked() {
+  location.href = "add.html";
+}
 function showUI() {
   const token = localStorage.getItem("token");
   const logOut = document.getElementById("logged-out-UI");
