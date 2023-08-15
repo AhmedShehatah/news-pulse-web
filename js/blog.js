@@ -26,10 +26,10 @@ function getFullBlog(id) {
             <img src="${img}" alt="">
             <div class="post-info">
               <h2 class="blog-title" id="${blog.publisher}">${blog.title}</h2>
-              <p>${blog.content}</p>
+              <p id="content">${blog.content}</p>
               <div class="post-publisher">
-                <span>${time[0]}</span>
-                <span>${blog.publisher}</span>
+              <span>${blog.publisher}</span>
+              <span>${time[0]}</span>
               </div>
             </div>
         </div>
@@ -55,34 +55,6 @@ function getFullBlog(id) {
     })
     .catch((error) => {
       console.log(error.response);
-    });
-}
-function deleteBtnClicked() {
-  document.getElementById("Delete").style.setProperty("pointer-events", "none");
-  document.querySelector(".loading").style.setProperty("display", "block");
-
-  const header = {
-    Authorization: `Bearer ${token}`,
-  };
-  axios
-    .delete(`${URL}/api/v1/news/${id}`, {
-      headers: header,
-    })
-    .then((response) => {
-      document
-        .getElementById("Delete")
-        .style.setProperty("pointer-events", "all");
-      document.querySelector(".loading").style.setProperty("display", "none");
-      alert(response.data)
-      location.href = "index.html";
-    })
-    .catch((error) => {
-      document
-      .getElementById("Delete")
-      .style.setProperty("pointer-events", "all");
-      document.querySelector(".loading").style.setProperty("display", "none");
-      alert(error.response.data);
-      location.href = "index.html";
     });
 }
 
