@@ -19,7 +19,7 @@ function getFullBlog(id) {
       if (img === "") img = "images/not-found.png";
       let time = blog.updatedAt;
       time = time.split("T");
-   
+
       let content = `
         <div class="blog">
         <div class="full-blog" dir="auto">
@@ -35,31 +35,64 @@ function getFullBlog(id) {
         </div>
         <div class="box-btn" >
           <button class="blog-btn" id="Edit">Edit</button>
-          <button class="blog-btn" id="Delete">Delete</button>
+          <button class="blog-btn" id="Delete" onclick="deleteBtnClicked()">Delete</button>
+
         </div>
-    </div>`
+    </div>`;
       document.querySelector(".blog-landing-page .container").innerHTML +=
         content;
-        let box = "none";
-        if(username === blog.publisher) {
-          theSame = true;
-          let box = "block";
-        }
-        console.log(username , blog.publisher , theSame)
-        if(!theSame) {
-          document.querySelector(".box-btn").style.setProperty("display" , "none" , "important");
-        }
+      let box = "none";
+      if (username === blog.publisher) {
+        theSame = true;
+        let box = "block";
+      }
+      console.log(username, blog.publisher, theSame);
+      if (!theSame) {
+        document
+          .querySelector(".box-btn")
+          .style.setProperty("display", "none", "important");
+      }
     })
     .catch((error) => {
       console.log(error.response);
+    });
+}
+function deleteBtnClicked() {
+  document.getElementById("Delete").style.setProperty("pointer-events", "none");
+  document.querySelector(".loading").style.setProperty("display", "block");
+
+  const header = {
+    Authorization: `Bearer ${token}`,
+  };
+  axios
+    .delete(`${URL}/api/v1/news/${id}`, {
+      headers: header,
+    })
+    .then((response) => {
+      document
+        .getElementById("Delete")
+        .style.setProperty("pointer-events", "all");
+      document.querySelector(".loading").style.setProperty("display", "none");
+      alert(response.data)
+      location.href = "index.html";
+    })
+    .catch((error) => {
+      document
+      .getElementById("Delete")
+      .style.setProperty("pointer-events", "all");
+      document.querySelector(".loading").style.setProperty("display", "none");
+      alert(error.response.data);
+      location.href = "index.html";
     });
 }
 
 function logoutButtonClicked() {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
-  if(theSame) {
-    document.querySelector(".box-btn").style.setProperty("display" , "none" , "important");
+  if (theSame) {
+    document
+      .querySelector(".box-btn")
+      .style.setProperty("display", "none", "important");
   }
   showUI();
 }
@@ -92,4 +125,7 @@ function showUI() {
     document.getElementById("sgn-up").style.setProperty("display", "block");
   }
 }
+document.addEventListener("click", (e) => {
+  console.log(e.target);
+});
 showUI();

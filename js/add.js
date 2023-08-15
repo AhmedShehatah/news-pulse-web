@@ -52,7 +52,7 @@ addBlogBtn.addEventListener("click", (e) => {
   if (fillAllInputs()) {
     e.preventDefault();
     addBlogBtn.style.setProperty("pointer-events", "none");
-    document.querySelector(".loading").style.setProperty("display", "block");
+    document.querySelector(".loading").style.setProperty("display", "block" , "important");
     addBlogBtnClicked();
   } else {
     alert("fill all inputs");
