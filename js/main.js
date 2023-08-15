@@ -36,6 +36,10 @@ function logoutButtonClicked() {
   localStorage.removeItem("user");
   showUI();
 }
+
+function addBtnClicked() {
+  location.href = "add.html";
+}
 function showUI() {
   const token = localStorage.getItem("token");
   const logOut = document.getElementById("logged-out-UI");
@@ -67,10 +71,7 @@ function showUI() {
     document.getElementById("sgn-up").style.setProperty("display" , "block");
   }
 }
-document.querySelector(".blog-title").addEventListener("click" , e => {
-  console.log(e.target)
-  alert("clikced")
-})
+
 
 showUI();
 
