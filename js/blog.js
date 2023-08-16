@@ -77,6 +77,7 @@ function editBtnClicked() {
   location.href = "update.html"
 }
 
+
 function deleteBtnClicked(){
   document.getElementById("Delete").style.setProperty("pointer-events", "none");
   document.querySelector(".loading").style.setProperty("display", "block");
@@ -103,6 +104,7 @@ function deleteBtnClicked(){
   
   })
 }
+
 function logoutButtonClicked() {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
