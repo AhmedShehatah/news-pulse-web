@@ -35,7 +35,9 @@ function getFullBlog(id) {
             </div>
         </div>
         <div class="box-btn" >
+
         <button class="blog-btn" id="Edit" onclick="editBtnClicked()">Edit</button>
+
           <button class="blog-btn" id="Delete" onclick="deleteBtnClicked()">Delete</button>
 
         </div>
@@ -46,6 +48,7 @@ function getFullBlog(id) {
         localStorage.setItem("titleBlog" , blog.title)
         localStorage.setItem("imgBlog" , img)
       
+
       let box = "none";
       if (username === blog.publisher) {
         theSame = true;
@@ -62,9 +65,41 @@ function getFullBlog(id) {
       console.log(error.response);
     });
 }
+
 function editBtnClicked() {
   location.href = "update.html"
 }
+
+function deleteBtnClicked() {
+  document.getElementById("Delete").style.setProperty("pointer-events", "none");
+  document.querySelector(".loading").style.setProperty("display", "block");
+
+  const header = {
+    Authorization: `Bearer ${token}`,
+  };
+  axios
+    .delete(`${URL}/api/v1/news/${id}`, {
+      headers: header,
+    })
+    .then((response) => {
+      document
+        .getElementById("Delete")
+        .style.setProperty("pointer-events", "all");
+      document.querySelector(".loading").style.setProperty("display", "none");
+      alert(response.data)
+      location.href = "index.html";
+    })
+    .catch((error) => {
+      document
+      .getElementById("Delete")
+      .style.setProperty("pointer-events", "all");
+      document.querySelector(".loading").style.setProperty("display", "none");
+      alert(error.response.data);
+      location.href = "index.html";
+    });
+}
+
+
 function logoutButtonClicked() {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
