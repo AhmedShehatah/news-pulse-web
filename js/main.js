@@ -40,6 +40,8 @@ function userBlogs() {
         `;
           document.querySelector(".posts .container").innerHTML += content;
         }
+      } else {
+        document.querySelector(".posts .container").innerHTML = `<h2 style="text-align: center;">No Current News</h2>`;
       }
       document.querySelector(".loading").style.setProperty("display", "none");
 
