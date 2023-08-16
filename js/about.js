@@ -26,6 +26,7 @@ function getAbout() {
 function logoutButtonClicked() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    location.href = "index.html"
     showUI();
   }
   function showUI() {
