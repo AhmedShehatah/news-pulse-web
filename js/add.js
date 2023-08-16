@@ -91,7 +91,6 @@ function createBlog(img) {
 
 function addBlogBtnClicked() {
   let formData = new FormData();
-  console.log(file);
   formData.append("image", file);
   const headers = {
     "Content-Type": "multipart/form-data;",
@@ -102,7 +101,6 @@ function addBlogBtnClicked() {
     })
     .then((response) => {
       createBlog(response.data.data.src);
-      console.log(response.data.data.src)
     })
     .catch((error) => {
       alert("try again");

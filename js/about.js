@@ -6,9 +6,7 @@ function getAbout() {
 
     axios.get(`${URL}/api/v1/about-us`)
     .then(response => {
-        console.log(response.data.data)
         const about = response.data.data[0];
-        console.log(about)
         let content = `
         <div class="about-box">
                 <p>${about.content}</p>
@@ -19,9 +17,7 @@ function getAbout() {
         document.querySelector(".loading").style.setProperty("display", "none");
 
     }).catch(error => {
-        console.log(error.response.data)
         document.querySelector(".loading").style.setProperty("display", "none");
-
     })
 }
 

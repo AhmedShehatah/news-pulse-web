@@ -5,8 +5,6 @@ const signInButton = document.getElementById("sign-in-button");
 function signInSubmitClicked() {
   const email = document.getElementById("email-input").value;
   const password = document.getElementById("password-input").value;
-  console.log(email, password);
-
   const params = {
     email: email,
     password: password,

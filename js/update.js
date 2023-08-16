@@ -84,7 +84,6 @@ function updateBlog(img) {
 
 function saveBtnClicked() {
   let formData = new FormData();
-  console.log(file);
   formData.append("image", file);
   const headers = {
     "Content-Type": "multipart/form-data;",
@@ -95,7 +94,6 @@ function saveBtnClicked() {
     })
     .then((response) => {
       updateBlog(response.data.data.src);
-      console.log(response.data.data.src);
  
     })
     .catch((error) => {
