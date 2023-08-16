@@ -304,12 +304,16 @@ i {
   font-weight: 400;
   text-align: left;
 }
-.landing-page form input {
+.landing-page form input,textarea {
   width: 100%;
   padding: 8px 10px;
   font-size: 20px;
   border-radius: 5px;
   transition: 0.3s;
+}
+.landing-page form textarea {
+  height: 100px;
+  resize: none;
 }
 .landing-page form input:focus {
   outline: none;

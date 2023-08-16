@@ -78,10 +78,14 @@ function createBlog(img) {
     })
     .then((response) => {
       alert("added successfully");
+      addBlogBtn.style.setProperty("pointer-events", "all");
+      document.querySelector(".loading").style.setProperty("display", "none");
       location.href = "index.html";
     })
     .catch((error) => {
       alert("try again");
+      addBlogBtn.style.setProperty("pointer-events", "all");
+      document.querySelector(".loading").style.setProperty("display", "none");
     });
 }
 
@@ -99,12 +103,8 @@ function addBlogBtnClicked() {
     .then((response) => {
       createBlog(response.data.data.src);
       console.log(response.data.data.src)
-      addBlogBtn.style.setProperty("pointer-events", "all");
-      document.querySelector(".loading").style.setProperty("display", "none");
     })
     .catch((error) => {
-      addBlogBtn.style.setProperty("pointer-events", "all");
-      document.querySelector(".loading").style.setProperty("display", "none");
       alert("try again");
     });
 }
