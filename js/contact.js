@@ -13,6 +13,8 @@ function SubmitClicked() {
     alert("sent successfully");
     signInButton.style.setProperty("pointer-events", "all");
     document.querySelector(".loading").style.setProperty("display", "none");
+    document.getElementById("msg").value = ""
+    document.getElementById("email-input").value = ""
   }).catch(error => {
     alert("try again");
     signInButton.style.setProperty("pointer-events", "all");
