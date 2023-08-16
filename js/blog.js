@@ -108,6 +108,7 @@ function logoutButtonClicked() {
       .querySelector(".box-btn")
       .style.setProperty("display", "none", "important");
   }
+  location.href = "index.html"
   showUI();
 }
 function showUI() {
