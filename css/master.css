@@ -811,3 +811,55 @@ i {
 }
 
 /* end upload section */
+
+/* start about */
+
+.blog-landing-page .container .about {
+  position: absolute;
+  top: 120px;
+  width: 94%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.blog-landing-page .container .about h2 {
+  color: var(--main-color);
+  font-size: 50px;
+  font-weight: 600;
+}
+.blog-landing-page .container .about .about-box {
+  display: flex;
+  margin-top: 40px;
+  gap: 20px;
+  justify-content: space-between;
+}
+.blog-landing-page .container .about .about-box p {
+  font-size: 18px;
+  color: var(--main-color);
+  font-weight: 600;
+
+}
+.blog-landing-page .container .about .about-box img {
+  width: 537px;
+  max-height: 400px;
+  border: 1px solid var(--bg-color);
+  border-radius: 5px;
+}
+
+@media (max-width:767px) {
+  
+  .blog-landing-page .container .about .about-box img {
+    width: 337px;
+    max-height: 300px;
+  }
+}
+@media (max-width:540px) {
+  .blog-landing-page .container .about .about-box {
+    display: block;
+  }
+  .blog-landing-page .container .about .about-box img {
+    width: 100%;
+    max-height: 400px;
+    margin-top: 20px;
+  }
+}
+/* end about */
