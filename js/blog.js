@@ -8,7 +8,6 @@ if (token !== null) {
   const user = JSON.parse(localStorage.getItem("user"));
   username = user.user_name;
 }
-console.log(id);
 getFullBlog(id);
 function getFullBlog(id) {
   document.querySelector(".loading").style.setProperty("display", "block");
@@ -56,7 +55,6 @@ function getFullBlog(id) {
         theSame = true;
         let box = "block";
       }
-      console.log(username, blog.publisher, theSame);
       if (!theSame) {
         document
           .querySelector(".box-btn")
@@ -66,7 +64,6 @@ function getFullBlog(id) {
 
     })
     .catch((error) => {
-      console.log(error.response);
       alert(error.response.data)
       document.querySelector(".loading").style.setProperty("display", "none");
 
@@ -87,7 +84,6 @@ function deleteBtnClicked(){
   axios.delete(`${URL}/api/v1/news/${id}`, {
     headers:header
   }).then(response => {
-    console.log(response.data);
     alert(response.data)
     document.getElementById("Delete").style.setProperty("pointer-events", "all");
     document.querySelector(".loading").style.setProperty("display", "none");
@@ -95,7 +91,6 @@ function deleteBtnClicked(){
   
   
   }).catch(error => {
-    console.log(error.response)
     alert(error.response.data)
     document.getElementById("Delete").style.setProperty("pointer-events", "all");
     document.querySelector(".loading").style.setProperty("display", "none");
