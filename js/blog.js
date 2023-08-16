@@ -37,7 +37,9 @@ function getFullBlog(id) {
             </div>
         </div>
         <div class="box-btn" >
+
         <button class="blog-btn" id="Edit" onclick="editBtnClicked()">Edit</button>
+
           <button class="blog-btn" id="Delete" onclick="deleteBtnClicked()">Delete</button>
 
         </div>
@@ -48,6 +50,7 @@ function getFullBlog(id) {
         localStorage.setItem("titleBlog" , blog.title)
         localStorage.setItem("imgBlog" , img)
       
+
       let box = "none";
       if (username === blog.publisher) {
         theSame = true;
@@ -69,9 +72,11 @@ function getFullBlog(id) {
 
     });
 }
+
 function editBtnClicked() {
   location.href = "update.html"
 }
+
 
 function deleteBtnClicked(){
   document.getElementById("Delete").style.setProperty("pointer-events", "none");
@@ -99,6 +104,7 @@ function deleteBtnClicked(){
   
   })
 }
+
 function logoutButtonClicked() {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
