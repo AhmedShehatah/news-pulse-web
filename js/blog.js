@@ -11,6 +11,8 @@ if (token !== null) {
 console.log(id);
 getFullBlog(id);
 function getFullBlog(id) {
+  document.querySelector(".loading").style.setProperty("display", "block");
+
   axios
     .get(`${URL}/api/v1/news/${id}`)
     .then((response) => {
@@ -60,9 +62,14 @@ function getFullBlog(id) {
           .querySelector(".box-btn")
           .style.setProperty("display", "none", "important");
       }
+      document.querySelector(".loading").style.setProperty("display", "none");
+
     })
     .catch((error) => {
       console.log(error.response);
+      alert(error.response.data)
+      document.querySelector(".loading").style.setProperty("display", "none");
+
     });
 }
 
@@ -70,35 +77,33 @@ function editBtnClicked() {
   location.href = "update.html"
 }
 
-function deleteBtnClicked() {
+
+function deleteBtnClicked(){
   document.getElementById("Delete").style.setProperty("pointer-events", "none");
   document.querySelector(".loading").style.setProperty("display", "block");
-
   const header = {
-    Authorization: `Bearer ${token}`,
-  };
-  axios
-    .delete(`${URL}/api/v1/news/${id}`, {
-      headers: header,
-    })
-    .then((response) => {
-      document
-        .getElementById("Delete")
-        .style.setProperty("pointer-events", "all");
-      document.querySelector(".loading").style.setProperty("display", "none");
-      alert(response.data)
-      location.href = "index.html";
-    })
-    .catch((error) => {
-      document
-      .getElementById("Delete")
-      .style.setProperty("pointer-events", "all");
-      document.querySelector(".loading").style.setProperty("display", "none");
-      alert(error.response.data);
-      location.href = "index.html";
-    });
-}
+    "Authorization" : `Bearer ${token}`
+  }
+  axios.delete(`${URL}/api/v1/news/${id}`, {
+    headers:header
+  }).then(response => {
+    console.log(response.data);
+    alert(response.data)
+    document.getElementById("Delete").style.setProperty("pointer-events", "all");
+    document.querySelector(".loading").style.setProperty("display", "none");
+    location.href = "index.html";
+  
+  
+  }).catch(error => {
+    console.log(error.response)
+    alert(error.response.data)
+    document.getElementById("Delete").style.setProperty("pointer-events", "all");
+    document.querySelector(".loading").style.setProperty("display", "none");
+    location.href = "index.html";
 
+  
+  })
+}
 
 function logoutButtonClicked() {
   localStorage.removeItem("token");

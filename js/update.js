@@ -71,10 +71,14 @@ function updateBlog(img) {
     })
     .then((response) => {
       alert("updated successfully");
+      saveBlogBtn.style.setProperty("pointer-events", "all");
+      document.querySelector(".loading").style.setProperty("display", "none");
       location.href = "index.html";
     })
     .catch((error) => {
         alert("try again");
+        saveBlogBtn.style.setProperty("pointer-events", "all");
+        document.querySelector(".loading").style.setProperty("display", "none");
     });
 }
 
@@ -92,12 +96,9 @@ function saveBtnClicked() {
     .then((response) => {
       updateBlog(response.data.data.src);
       console.log(response.data.data.src);
-      saveBlogBtn.style.setProperty("pointer-events", "all");
-      document.querySelector(".loading").style.setProperty("display", "none");
+ 
     })
     .catch((error) => {
-      saveBlogBtn.style.setProperty("pointer-events", "all");
-      document.querySelector(".loading").style.setProperty("display", "none");
       alert("try again");
     });
 }

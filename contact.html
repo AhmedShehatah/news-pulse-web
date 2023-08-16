@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up</title>
+    <title>contact</title>
     <link rel="stylesheet" href="css/all.min.css" />
     <link rel="stylesheet" href="css/master.css" />
     <link rel="stylesheet" href="css/normalize.css" />
@@ -21,66 +21,76 @@
   <body>
     <!-- start header -->
     <header>
-      <div class="container">
-        <nav>
-          <div class="left" id="left">
-            <button id="menu-icon">
-              <i class="fa-solid fa-bars"></i>
-            </button>
-            <ul>
-              <li><a href="contact.html">Contact Us</a></li>
-              <li><a href="#">About Us</a></li>
-            </ul>
-          </div>
-          <div class="right">
-            <ul>
-              <li><a href="sign-in.html">Sign In</a></li>
-              <li><a href="#">Sign Up</a></li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </header>
+        <div class="container">
+          <nav>
+            <div class="left" id="left">
+              <button id="menu-icon">
+                <i class="fa-solid fa-bars"></i>
+              </button>
+              <ul>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">About Us</a></li>
+              </ul>
+            </div>
+            <div class="right">
+              <ul id="logged-out-UI">
+                <li><a href="sign-in.html">Sign In</a></li>
+                <li><a href="sign-up.html">Sign Up</a></li>
+              </ul>
+              <div id="logged-in-UI">
+                <div id="info">
+                  <b>A</b>
+                  <span>Ahmed Hamdy</span>
+                </div>
+  
+                <a href="#" id="log-out-button" onclick="logoutButtonClicked()"
+                  >Log Out</a
+                >
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
     <!-- end header -->
 
     <!-- start menu box -->
     <div id="menu">
-      <div class="menu-box">
-        <div id="arrow">
-          <i class="fa-solid fa-arrow-left"></i>
+        <div class="menu-box">
+          <div id="arrow">
+            <i class="fa-solid fa-arrow-left"></i>
+          </div>
+          <a href="index.html">
+            <div class="box">
+              <i class="fa-solid fa-house"></i>
+              <p>Home</p>
+            </div>
+          </a>
+          <a href="#">
+            <div class="box active">
+              <img src="images/Vector.png" alt="" />
+              <p>Contact Us</p>
+            </div>
+          </a>
+          <a href="#"
+            ><div class="box">
+              <img src="images/Vector (1).png" alt="" />
+              <p>About Us</p>
+            </div></a
+          >
+          <a href="sign-up.html"id="sgn-up">
+            <div class="box">
+              <img src="images/Vector (2).png" alt="" />
+              <p>Sign Up</p>
+            </div>
+          </a>
+          <a href="sign-in.html"id="sgn-in">
+            <div class="box">
+              <img src="images/fluent-mdl2_signin.png" alt="" />
+              <p>Sign In</p>
+            </div>
+          </a>
         </div>
-        <a href="index.html">
-          <div class="box">
-            <img src="images/Vector.png" alt="" />
-            <p>Home</p>
-          </div>
-        </a>
-        <a href="contact.html">
-          <div class="box">
-            <img src="images/Vector.png" alt="" />
-            <p>Contact Us</p>
-          </div>
-        </a>
-        <a href="#"
-          ><div class="box">
-            <img src="images/Vector (1).png" alt="" />
-            <p>About Us</p>
-          </div></a
-        >
-        <a href="#">
-          <div class="box active">
-            <img src="images/Vector (2).png" alt="" />
-            <p>Sign Up</p>
-          </div>
-        </a>
-        <a href="sign-in.html">
-          <div class="box">
-            <img src="images/fluent-mdl2_signin.png" alt="" />
-            <p>Sign In</p>
-          </div>
-        </a>
       </div>
-    </div>
     <!-- end menu box -->
     <!-- start landing section -->
     <section class="landing-page">
@@ -88,16 +98,7 @@
         <div class="content sign">
           <img src="images/logo-no-background-white 2.png" alt="" />
         </div>
-        <form id="signUp-page">
-          <div class="input-box">
-            <label for="user-input">Username</label>
-            <input
-              type="text"
-              id="user-input"
-              placeholder="username"
-              required
-            />
-          </div>
+        <form >
           <div class="input-box">
             <label for="email-input">Email</label>
             <input
@@ -108,29 +109,22 @@
               value="hamdy@gmail.com"
             />
           </div>
-
           <div class="input-box">
-            <label for="password-input">Password</label>
-            <input
-              type="password"
-              id="password-input"
-              placeholder="password"
-              required
-              value="12345678"
-            />
+            <label for="msg">Message</label>
+            <textarea placeholder="message" id="msg" required></textarea>
           </div>
-          <input type="submit" value="Submit" id="sign-up-button" />
+          <input type="submit" value="Submit" id="sign-in-button" />
         </form>
       </div>
       <div id="overlay"></div>
       <div class="loading" style="display: none;">Loading&#8230;</div>
-
+      
     </section>
     <!-- end landing section -->
 
     <!-- start post section -->
     <!-- end post section -->
   </body>
-  <script src="js/sign-up.js"></script>
   <script src="js/all.js"></script>
+  <script src="js/contact.js"></script>
 </html>

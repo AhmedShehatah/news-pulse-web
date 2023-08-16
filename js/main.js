@@ -1,18 +1,69 @@
 const URL = "https://studentsystem.onrender.com";
-getAllBlogs();
+const token = localStorage.getItem("token");
+if (token !== null) {
+  userBlogs();
+} else {
+  getAllBlogs();
+}
+function userBlogs() {
+  document.querySelector(".loading").style.setProperty("display", "block");
+  const header = {
+    Authorization: `Bearer ${token}`,
+  };
+  axios
+    .get(`${URL}/api/v1/news`, {
+      headers: header,
+    })
+    .then((response) => {
+      const posts = response.data.data;
+      posts.reverse();
+      if(posts.length !== 0) {
+
+        document.querySelector(".posts .container").innerHTML = "";
+        for (let post of posts) {
+          let img = post.image_url;
+          if (img === "") img = "images/not-found.png";
+          let time = post.updatedAt;
+          time = time.split("T");
+          let content = ` 
+        <div class="post" dir="auto">
+          <img src="${img}" alt="image not found">
+          <div class="post-info">
+          <a href="blog.html"><h2 id="${post._id}" class="blog-title">${post.title}</h2></a>
+            <p>${post.content}...</p>
+            <div class="post-publisher">
+              <span>${time[0]}</span>
+              <span>${post.publisher}</span>
+            </div>
+          </div>
+      </div>
+        `;
+          document.querySelector(".posts .container").innerHTML += content;
+        }
+      }
+      document.querySelector(".loading").style.setProperty("display", "none");
+
+    })
+    .catch((error) => {
+      alert(error.response.data)
+      document.querySelector(".loading").style.setProperty("display", "none");
+
+    });
+}
 function getAllBlogs() {
-  axios.get(`${URL}/api/v1/news`)
-  .then(response => {
-    const posts = response.data.data;
-    posts.reverse();
-    document.querySelector(".posts .container").innerHTML = "";
-    for(let post of posts) {
-      console.log(post.image_url)
-      let img = post.image_url;
-      if(img === "") img = "images/not-found.png";
-      let time = post.updatedAt;
-      time = time.split("T");
-      let content = ` 
+  document.querySelector(".loading").style.setProperty("display", "block");
+  axios
+    .get(`${URL}/api/v1/news`)
+    .then((response) => {
+      const posts = response.data.data;
+      posts.reverse();
+      document.querySelector(".posts .container").innerHTML = "";
+      for (let post of posts) {
+        let img = post.image_url;
+        if (img === "") img = "images/not-found.png";
+        let time = post.updatedAt;
+        time = time.split("T");
+        let content = ` 
       <div class="post" dir="auto">
         <img src="${img}" alt="image not found">
         <div class="post-info">
@@ -24,17 +75,21 @@ function getAllBlogs() {
           </div>
         </div>
     </div>
-      `
-      document.querySelector(".posts .container").innerHTML += content;
-    }
-  }).catch(error => {
-    console.log(error.response);
-  })
+      `;
+        document.querySelector(".posts .container").innerHTML += content;
+      }
+      document.querySelector(".loading").style.setProperty("display", "none");
+
+    })
+    .catch((error) => {
+      alert(error.response.data);
+    });
 }
 function logoutButtonClicked() {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
   showUI();
+  getAllBlogs();
 }
 
 function addBtnClicked() {
@@ -58,20 +113,18 @@ function showUI() {
       .getElementById("logged-in-UI")
       .style.setProperty("display", "flex");
     logOut.style.setProperty("display", "none");
-    document.getElementById("addBtn").style.setProperty("display" , "block");
-    document.getElementById("sgn-in").style.setProperty("display" , "none");
-    document.getElementById("sgn-up").style.setProperty("display" , "none");
+    document.getElementById("addBtn").style.setProperty("display", "block");
+    document.getElementById("sgn-in").style.setProperty("display", "none");
+    document.getElementById("sgn-up").style.setProperty("display", "none");
   } else {
     document
       .getElementById("logged-in-UI")
       .style.setProperty("display", "none");
     logOut.style.setProperty("display", "flex");
-    document.getElementById("addBtn").style.setProperty("display" , "none");
-    document.getElementById("sgn-in").style.setProperty("display" , "block");
-    document.getElementById("sgn-up").style.setProperty("display" , "block");
+    document.getElementById("addBtn").style.setProperty("display", "none");
+    document.getElementById("sgn-in").style.setProperty("display", "block");
+    document.getElementById("sgn-up").style.setProperty("display", "block");
   }
 }
 
-
 showUI();
-
