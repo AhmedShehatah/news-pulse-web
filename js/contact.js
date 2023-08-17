@@ -1,3 +1,4 @@
+
 const URL = "https://studentsystem.onrender.com";
 const signInButton = document.getElementById("sign-in-button");
 
@@ -9,7 +10,9 @@ function SubmitClicked() {
     report: msg,
   };
   axios
-    .post(`${URL}/api/v1/contact`, params)
+    .post(`${URL}/api/v1/contact`, params , {
+      timeout:30000
+    })
     .then((response) => {
       alert("sent successfully");
       signInButton.style.setProperty("pointer-events", "all");
@@ -18,7 +21,11 @@ function SubmitClicked() {
       document.getElementById("email-input").value = "";
     })
     .catch((error) => {
-      alert("try again");
+      if (axios.isCancel(error)) {
+        // Request was canceled due to timeout
+        alert("Request canceled due to timeout try again");
+      }
+      else alert("try again");
       signInButton.style.setProperty("pointer-events", "all");
       document.querySelector(".loading").style.setProperty("display", "none");
     });

@@ -52,7 +52,9 @@ addBlogBtn.addEventListener("click", (e) => {
   if (fillAllInputs()) {
     e.preventDefault();
     addBlogBtn.style.setProperty("pointer-events", "none");
-    document.querySelector(".loading").style.setProperty("display", "block" , "important");
+    document
+      .querySelector(".loading")
+      .style.setProperty("display", "block", "important");
     addBlogBtnClicked();
   } else {
     alert("fill all inputs");
@@ -75,6 +77,7 @@ function createBlog(img) {
   axios
     .post(`${URL}/api/v1/news`, params, {
       headers: headers,
+      timeout: 50000,
     })
     .then((response) => {
       alert("added successfully");
@@ -83,7 +86,10 @@ function createBlog(img) {
       location.href = "index.html";
     })
     .catch((error) => {
-      alert("try again");
+      if (axios.isCancel(error)) {
+        // Request was canceled due to timeout
+        alert("Request canceled due to timeout try again");
+      } else alert("try again");
       addBlogBtn.style.setProperty("pointer-events", "all");
       document.querySelector(".loading").style.setProperty("display", "none");
     });
@@ -104,6 +110,8 @@ function addBlogBtnClicked() {
     })
     .catch((error) => {
       alert("try again");
+      addBlogBtn.style.setProperty("pointer-events", "all");
+      document.querySelector(".loading").style.setProperty("display", "none");
     });
 }
 function logoutButtonClicked() {
