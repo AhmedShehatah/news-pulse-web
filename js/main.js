@@ -1,3 +1,4 @@
+
 const URL = "https://studentsystem.onrender.com";
 const token = localStorage.getItem("token");
 if (token !== null) {
@@ -55,36 +56,49 @@ function userBlogs() {
 function getAllBlogs() {
   document.querySelector(".loading").style.setProperty("display", "block");
   axios
-    .get(`${URL}/api/v1/news`)
+    .get(`${URL}/api/v1/news`, {
+      timeout:30000
+    })
     .then((response) => {
       const posts = response.data.data;
       posts.reverse();
-      document.querySelector(".posts .container").innerHTML = "";
-      for (let post of posts) {
-        let img = post.image_url;
-        if (img === "") img = "images/not-found.png";
-        let time = post.updatedAt;
-        time = time.split("T");
-        let content = ` 
-      <div class="post" dir="auto">
-        <img src="${img}" alt="image not found">
-        <div class="post-info">
-        <a href="blog.html"><h2 id="${post._id}" class="blog-title">${post.title}</h2></a>
-          <p>${post.content}...</p>
-          <div class="post-publisher">
-            <span>${time[0]}</span>
-            <span>${post.publisher}</span>
+      if(posts.length !== 0) {
+        document.querySelector(".posts .container").innerHTML = "";
+        for (let post of posts) {
+          let img = post.image_url;
+          if (img === "") img = "images/not-found.png";
+          let time = post.updatedAt;
+          time = time.split("T");
+          let content = ` 
+        <div class="post" dir="auto">
+          <img src="${img}" alt="image not found">
+          <div class="post-info">
+          <a href="blog.html"><h2 id="${post._id}" class="blog-title">${post.title}</h2></a>
+            <p>${post.content}...</p>
+            <div class="post-publisher">
+              <span>${time[0]}</span>
+              <span>${post.publisher}</span>
+            </div>
           </div>
-        </div>
-    </div>
-      `;
-        document.querySelector(".posts .container").innerHTML += content;
+      </div>
+        `;
+          document.querySelector(".posts .container").innerHTML += content;
+        }
+      } else {
+        document.querySelector(".posts .container").innerHTML = `<h2 style="text-align: center; margin-bottom:60px; color:#a9a6a6">No Current News</h2>`;
+
       }
       document.querySelector(".loading").style.setProperty("display", "none");
 
     })
     .catch((error) => {
-      alert(error.response.data);
+      if (axios.isCancel(error)) {
+        // Request was canceled due to timeout
+        alert("Request canceled due to timeout try again");
+      }else 
+        alert(error.response.data);
+      document.querySelector(".loading").style.setProperty("display", "none");
+
     });
 }
 function logoutButtonClicked() {

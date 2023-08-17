@@ -1,10 +1,13 @@
+
 const URL = "https://studentsystem.onrender.com";
 getAbout()
 
 function getAbout() {
     document.querySelector(".loading").style.setProperty("display", "block");
 
-    axios.get(`${URL}/api/v1/about-us`)
+    axios.get(`${URL}/api/v1/about-us`, {
+      timeout: 30000
+    })
     .then(response => {
         const about = response.data.data[0];
         let content = `
@@ -17,6 +20,10 @@ function getAbout() {
         document.querySelector(".loading").style.setProperty("display", "none");
 
     }).catch(error => {
+      if (axios.isCancel(error)) {
+      // Request was canceled due to timeout
+      console.log('Request canceled due to timeout');
+    }
         document.querySelector(".loading").style.setProperty("display", "none");
     })
 }

@@ -10,7 +10,9 @@ function signInSubmitClicked() {
     password: password,
   };
   axios
-    .post(`${URL}/api/v1/auth/login/`, params)
+    .post(`${URL}/api/v1/auth/login/`, params, {
+      timeout: 30000,
+    })
     .then((response) => {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.data));
@@ -22,7 +24,10 @@ function signInSubmitClicked() {
     })
     .catch((error) => {
       // TODO : Handle error
-      alert(error.response.data.message);
+      if (axios.isCancel(error)) {
+        // Request was canceled due to timeout
+        alert("Request canceled due to timeout try again");
+      } else alert(error.response.data.message);
       signInButton.style.setProperty("pointer-events", "all");
       document.querySelector(".loading").style.setProperty("display", "none");
     });

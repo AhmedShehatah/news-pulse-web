@@ -12,18 +12,22 @@ function signUpSubmitClicked() {
     password: password,
   };
   axios
-    .post(`${URL}/api/v1/auth/signup/`, params)
+    .post(`${URL}/api/v1/auth/signup/`, params, {
+      timeout: 30000,
+    })
     .then((response) => {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.data));
-      alert("sign up successfully");
       // TODO: Handle successfully
       location.href = "index.html";
       signUpSubmitBtn.style.setProperty("pointer-events", "all");
       document.querySelector(".loading").style.setProperty("display", "none");
     })
     .catch((error) => {
-      alert(error.response.data.message);
+      if (axios.isCancel(error)) {
+        // Request was canceled due to timeout
+        alert("Request canceled due to timeout try again");
+      } else alert(error.response.data.message);
       signUpSubmitBtn.style.setProperty("pointer-events", "all");
       document.querySelector(".loading").style.setProperty("display", "none");
     });

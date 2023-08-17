@@ -1,3 +1,4 @@
+
 const menuIcon = document.getElementById("menu-icon");
 const arrowIcon = document.getElementById("arrow");
 

@@ -68,6 +68,7 @@ function updateBlog(img) {
   axios
     .patch(`${URL}/api/v1/news/${id}`, params, {
       headers: headers,
+      timeout: 50000,
     })
     .then((response) => {
       alert("updated successfully");
@@ -76,9 +77,12 @@ function updateBlog(img) {
       location.href = "index.html";
     })
     .catch((error) => {
-        alert("try again");
-        saveBlogBtn.style.setProperty("pointer-events", "all");
-        document.querySelector(".loading").style.setProperty("display", "none");
+      if (axios.isCancel(error)) {
+        // Request was canceled due to timeout
+        alert("Request canceled due to timeout try again");
+      } else alert("try again");
+      saveBlogBtn.style.setProperty("pointer-events", "all");
+      document.querySelector(".loading").style.setProperty("display", "none");
     });
 }
 
@@ -91,13 +95,16 @@ function saveBtnClicked() {
   axios
     .post(`${URL}/uploads/`, formData, {
       headers: headers,
+      timeout: 50000,
     })
     .then((response) => {
       updateBlog(response.data.data.src);
- 
     })
     .catch((error) => {
-      alert("try again");
+      if (axios.isCancel(error)) {
+        // Request was canceled due to timeout
+        alert("Request canceled due to timeout try again");
+      } else alert("try again");
     });
 }
 
